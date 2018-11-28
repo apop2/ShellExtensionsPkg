@@ -1,0 +1,3 @@
+The TCG2ShellCommandsLib is based on the "TPM 2.0 tools running in UEFI environment" written by 
+Jia Zhang <zhang.jia@linux.alibaba.com>. The code was modified to build in a EDK2 environment. 
+See the original code at: https://github.com/jiazhang0/efi-tpm2-utils

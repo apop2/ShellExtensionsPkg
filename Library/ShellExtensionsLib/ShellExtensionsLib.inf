@@ -1,0 +1,91 @@
+#
+# Copyright 2018 Aaron Pop
+#
+# Redistribution and use in source and binary forms, with or without modification, 
+#    are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this 
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice, 
+#    this list of conditions and the following disclaimer in the documentation 
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors may 
+#    be used to endorse or promote products derived from this software without 
+#    specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+# INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ShellExtensionsLib
+  FILE_GUID                      = 71374B42-85D7-4753-AD17-AA84C3A0EB93
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NULL|UEFI_APPLICATION UEFI_DRIVER
+  CONSTRUCTOR                    = ShellExtensionsLibConstructor
+  DESTRUCTOR                     = ShellExtensionsLibDestructor
+
+[Sources.common]
+  ShellExtensionsLib.uni
+  ShellExtensionsLib.c
+  ShellExtensionsLib.h
+  DisplayEdid.c
+  Msr.c
+  CpuId.c
+  DisplayGop.c
+  TestSpeaker.c
+  BbsTable.c
+  ColorBar.c
+  IoMap.c
+  DumpHobs.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ShellExtensionsPkg/ShellExtensionsPkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  ShellCommandLib
+  ShellLib
+  UefiLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  PcdLib
+  HiiLib
+  FileHandleLib
+  HandleParsingLib
+  IoLib
+  HobLib
+
+[Guids]
+  gEfiFileInfoGuid                                        ## UNDEFINED
+  gEfiHobListGuid
+
+[Pcd.common]
+  gEfiShellPkgTokenSpaceGuid.PcdShellSupportLevel         ## CONSUMES
+  gEfiShellPkgTokenSpaceGuid.PcdShellFileOperationSize    ## SOMETIMES_CONSUMES
+  gEfiShellPkgTokenSpaceGuid.PcdShellSupplier             ## SOMETIMES_CONSUMES
+
+[Protocols]
+  gEfiShellDynamicCommandProtocolGuid                     ## SOMETIMES_CONSUMES
+  gEfiLegacyBiosProtocolGuid                              ## SOMETIMES_CONSUMES
