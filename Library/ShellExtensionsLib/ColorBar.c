@@ -26,7 +26,6 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
 #include <Protocol/GraphicsOutput.h>
 #include <Protocol/EdidActive.h>
 #include <Library/UefiLib.h>
@@ -321,7 +320,7 @@ SHELL_STATUS EFIAPI ShellCommandColorScreen(IN EFI_HANDLE ImageHandle, IN EFI_SY
     {
         for(i = 0; i < HandleCount; i++)
         {
-            Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiGraphicsOutputProtocolGuid, &Gop);
+            Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiGraphicsOutputProtocolGuid, (VOID**)&Gop);
             if(!EFI_ERROR(Status))
             {
                 DisplayPattern(Gop);
@@ -333,7 +332,7 @@ SHELL_STATUS EFIAPI ShellCommandColorScreen(IN EFI_HANDLE ImageHandle, IN EFI_SY
 
         for(i = 0; i < HandleCount; i++)
         {
-            Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiGraphicsOutputProtocolGuid, &Gop);
+            Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiGraphicsOutputProtocolGuid, (VOID**)&Gop);
             if(!EFI_ERROR(Status))
             {
                 Gop->Blt(   Gop,

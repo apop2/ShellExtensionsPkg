@@ -58,7 +58,7 @@
   ShellPkg/ShellPkg.dec
   MdeModulePkg/MdeModulePkg.dec
   ShellExtensionsPkg/ShellExtensionsPkg.dec
-  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [LibraryClasses]
   MemoryAllocationLib

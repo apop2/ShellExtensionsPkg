@@ -26,7 +26,6 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
 #include <PiDxe.h>
 #include <Library/ShellLib.h>
 #include <Library/UefiLib.h>
@@ -34,7 +33,7 @@
 #include <Library/UefiApplicationEntryPoint.h>
 #include <Library/DxeServicesTableLib.h>
 #include <Library/HandleParsingLib.h>
-EFI_STATUS ShellCommandIoMap(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
+SHELL_STATUS EFIAPI ShellCommandIoMap(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
 	EFI_STATUS Status;
 

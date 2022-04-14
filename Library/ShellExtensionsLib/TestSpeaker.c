@@ -26,11 +26,13 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
+#include <Library/ShellLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/IoLib.h>
 
+
+// Note: This works for x86 hardware only. 
 
 SHELL_STATUS EFIAPI ShellCommandTestSpeaker(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {

@@ -26,7 +26,6 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
 #include <Library/HandleParsingLib.h>
 #include <Protocol/GraphicsOutput.h>
 #include <Protocol/EdidActive.h>
@@ -172,7 +171,7 @@ SHELL_STATUS EFIAPI ShellCommandDisplayEdid(IN EFI_HANDLE ImageHandle, IN EFI_SY
     if(Temp != NULL) 
     {
         Status = ShellConvertStringToUint64(Temp, &HandleNumber, TRUE, TRUE);
-        Status = gBS->HandleProtocol(ConvertHandleIndexToHandle((UINT32)HandleNumber), &gEfiEdidActiveProtocolGuid, &EdidActive);
+        Status = gBS->HandleProtocol(ConvertHandleIndexToHandle((UINT32)HandleNumber), &gEfiEdidActiveProtocolGuid, (VOID**)&EdidActive);
         if(!EFI_ERROR(Status)) 
         {
             ParseAndPrintEdidInfo(ConvertHandleIndexToHandle((UINT32)HandleNumber), EdidActive);
@@ -187,7 +186,7 @@ SHELL_STATUS EFIAPI ShellCommandDisplayEdid(IN EFI_HANDLE ImageHandle, IN EFI_SY
         {
             for(i = 0; i < HandleCount; i++) 
             {
-                Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiEdidActiveProtocolGuid, &EdidActive);
+                Status = gBS->HandleProtocol(HandleBuffer[i], &gEfiEdidActiveProtocolGuid, (VOID**)&EdidActive);
                 if(!EFI_ERROR(Status)) 
                 {
                     ParseAndPrintEdidInfo(HandleBuffer[i], EdidActive);

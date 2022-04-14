@@ -26,7 +26,6 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
 #include <Library/ShellLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
@@ -50,7 +49,7 @@ SHELL_STATUS EFIAPI ShellCommandBbsTable(IN EFI_HANDLE ImageHandle, IN EFI_SYSTE
     UINTN i = 0;
 
 
-    Status = gBS->LocateProtocol(&gEfiLegacyBiosProtocolGuid, NULL, &LegacyBios);
+    Status = gBS->LocateProtocol(&gEfiLegacyBiosProtocolGuid, NULL, (VOID**)&LegacyBios);
     if(EFI_ERROR(Status))
     {
         ShellPrintEx(-1, -1, L"Unable to locate the Legacy Bios Protocol\n");

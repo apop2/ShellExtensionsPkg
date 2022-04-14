@@ -26,7 +26,6 @@
     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-#include <ShellBase.h>
 #include <Protocol/GraphicsOutput.h>
 #include <Protocol/EdidActive.h>
 #include <Library/UefiLib.h>
@@ -45,7 +44,7 @@ VOID SetGopDeviceMode(EFI_HANDLE Device, UINT32 NewMode)
     EFI_STATUS Status;
     EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop = NULL;
 
-    Status = gBS->HandleProtocol(Device, &gEfiGraphicsOutputProtocolGuid, &Gop);
+    Status = gBS->HandleProtocol(Device, &gEfiGraphicsOutputProtocolGuid, (VOID**)&Gop);
     if(!EFI_ERROR(Status))
     {
         if(NewMode > Gop->Mode->MaxMode)
@@ -68,13 +67,13 @@ VOID DisplayGopDeviceInfo(EFI_HANDLE Device)
 
     EFI_DEVICE_PATH_PROTOCOL *Dp = NULL;
 
-    Status = gBS->HandleProtocol(Device, &gEfiGraphicsOutputProtocolGuid, &Gop);
+    Status = gBS->HandleProtocol(Device, &gEfiGraphicsOutputProtocolGuid, (VOID**)&Gop);
     if(!EFI_ERROR(Status)) 
     {
         i = (UINT32)ConvertHandleToHandleIndex(Device);
         ShellPrintEx(-1, -1, L"Handle %x\n", i);
 
-        Status = gBS->HandleProtocol(Device, &gEfiDevicePathProtocolGuid, &Dp);
+        Status = gBS->HandleProtocol(Device, &gEfiDevicePathProtocolGuid, (VOID**)&Dp);
         if(!EFI_ERROR(Status))
         {
             CHAR16 *Str = ConvertDevicePathToText(Dp, TRUE, FALSE);
